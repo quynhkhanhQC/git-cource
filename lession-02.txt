@@ -1,0 +1,58 @@
+    
+Câu I: Giải thích các câu lệnh: git init, git add <file_name>, git add ., git commit -m “message”
+
+    1. Giải thích câu lệnh: git init
+    Trả lời: 
+        A. git init là câu lệnh khởi tạo thư mục. Sau khi chạy lệnh này thì tất cả các file có trong thư mục
+        sẽ nằm ở vùng Working Directory
+        B. Nếu Thư mục đã từng được push lên git rồi, nếu có sự thay đổi nội dung trong file nào đó hoặc thêm 
+        mới 1 file thì file đó sẽ tự động nằm trong vùng Working Directory luôn
+
+    2. Giải thích câu lệnh: git add <file_name>
+    Trả lời: 
+        A. git add <file_name> là câu lệnh dùng để add những file mà mình muốn commit. Sau khi chạy lệnh này xong
+        thì những file vừa được add đều nằm ở vùng Staging Area
+        B. Nếu muốn add nhiều file thì sử dụng khoảng trắng giữa các file git add <file_name_1> <file_name_2>
+
+    3. Giải thích câu lệnh: git add .
+    Trả lời:
+        git add . là câu lệnh dùng để add tất cả các file có ở vùng Working Directory vào vùng Staging Area
+
+    4. Giải thích câu lệnh: git commit -m “message”
+    Trả lời:
+        A. git commit -m “message” câu lệnh này dùng để đẩy các file từ vùng Staging Area sang vùng Repository để chuẩn 
+        bị push lên git
+        B. Đối với phần “message” phải đặt theo quy chuẩn Commit convention:
+            <type>: <short_description>
+                ● Trong đó:
+                ○ type: loại commit
+                ■ chore: sửa nhỏ lẻ, chính tả, xóa
+                file không dùng tới,...
+                ■ feat: thêm tính năng mới, test
+                case mới
+                ■ fix: sửa lỗi 1 test trước đó
+                ○ short_description: mô tả ngắn gọn
+                (50 kí tự), tiếng Anh hoặc tiếng Việt
+                không dấu.
+
+Câu II: Hãy tưởng tượng có 1 folder lesson-2 mới được tạo. Hãy liệt kê các file theo từng vùng sau khi thao tác một loạt các lệnh 
+sau (sẽ rất tuyệt nếu bạn không chạy lệnh trên máy thật, mà bạn suy nghĩ trong đầu để ra được kết quả; bạn sẽ nhớ rất lâu 
+đấy ^^): 
+    a. Tạo 3 file: file1, file2, file3
+        b. Chạy lệnh: git init để khởi tạo thư mục lession-2
+            - Vùng Working Directory sẽ chứa 3 file: file1, file2, file3
+
+        c. Chạy lệnh: git commit -m”init project”
+            - Sẽ báo lỗi không tìm thấy file nào: Vì trong vùng Staging Area chưa có file nào được add. Do chưa chạy lệnh git add
+
+        d. Chạy lệnh: git add file1
+            - file1 sẽ được add vào Staging Area
+
+        e. Chạy lệnh: git commit -m”add file1”
+            - file1 sẽ chuyển từ Staging Area đẩy vào vùng Repository
+
+        f. Chạy lệnh: git add file
+            - Sẽ báo lỗi không tìm thấy file này
+
+
+

@@ -1,0 +1,419 @@
+Tại repo git-course, hãy tạo file lesson-3.txt để trả lời cho các câu hỏi dưới đây:
+    Bài 1. Giải thích các câu lệnh: git commit --amend, git commit --amend
+        -m”<message>”, git restore --staged <file>, git reset HEAD~1.
+
+    Trả lời: 
+
+    1. git commit --amend: là lệnh thay đổi message commit cuối trước đó và phải thực hiện theo các bước sau:
+        - Bước 1:  Gõ i -> vào chế độ insert và sửa message
+        - Bước 2:  Gõ esc để thoát insert
+        - Bước 2:  Gõ “:wq” -> write and quit
+
+    2. git commit --amend -m”<message>”: là lệnh thay đổi message commit cuối trước đó mà không cần phải thực hiện 3 bước trên
+    
+    3. git restore --staged <file>: là lệnh undo file từ vùng staging về vùng working derectory
+    Ví dụ:
+
+        --------------------------------
+        --------------------------------
+        Vùng working dersctory:
+
+            file1
+            file2
+
+                --------------------------------
+                --------------------------------
+
+                    Vùng stating:
+                        file3
+                        file4
+
+                    --------------------------------
+                    --------------------------------
+
+                        Vùng repository:
+                            Không có file nào
+
+        
+
+        Muốn undo file3 về vùng working derectory sử dụng lệnh: git restore --staged file3
+        Sau khi chạy lệnh git restore --staged file3
+        --------------------------------
+        --------------------------------
+        Vùng working dersctory:
+            file1
+            file2
+            file3
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+                    file4
+
+                    --------------------------------
+                    --------------------------------
+
+                    Vùng repository:
+                        Không có file nào
+
+        
+    4. git reset HEAD~1: lệnh undo commit đưa file từ vùng repository về vùng working derectory
+    Trong đó: Nếu muốn undo 1 commit thì gõ ~1, nếu muốn undo 2 commit thì gõ ~2
+    ví dụ:
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            file2
+
+                --------------------------------
+                --------------------------------
+                Vùng stating:
+
+                    file4
+
+                    --------------------------------
+                    --------------------------------
+
+                    Vùng repository:
+
+                        commit 3 (file5, file6)
+
+                        commit 2 (file3)
+
+                        commit 1 (file1)
+
+      
+
+        Sử dụng lệnh undo commit để undo commit 2 và 3 về vùng wroking derectory: git reset HEAD~2
+        Kết quả:
+
+        --------------------------------
+        --------------------------------
+
+        Vùng working derectory:
+            
+            file2
+            file3
+            file5
+            file6
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+
+                    file4
+
+                        --------------------------------
+                        --------------------------------
+
+                        Vùng repository:
+
+                            commit 1 (file1) 
+
+        
+
+    Bài 2. Hãy tưởng tượng có 1 folder lesson-3 mới được tạo. Hãy liệt kê các file theo từng
+    vùng, liệt kê các commit và message tương ứng sau khi thao tác một loạt các lệnh sau
+    (sẽ rất tuyệt vời nếu bạn không chạy trên máy tính thật, mà bạn chạy trong đầu, sẽ giúp
+    bạn hiểu về Git rõ ràng hơn):
+
+    a. Tạo 3 file: file1, file2, file3
+    b. Chạy lệnh: git init
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            file1
+            file2
+            file3
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+
+                    Chưa có file nào
+
+                        --------------------------------
+                        --------------------------------
+
+                        Vùng repository:
+
+                            Chưa có file nào
+
+        
+
+    c. Chạy lệnh: git commit -m”init project”: Lỗi vì vùng stating chưa có file nào
+ 
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            file1
+            file2
+            file3
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+
+                    Chưa có file nào
+
+                        --------------------------------
+                        --------------------------------
+
+                        Vùng repository:
+
+                            Chưa có file nào
+
+      
+
+    d. Chạy lệnh: git add file1
+
+        --------------------------------
+        --------------------------------
+
+        Vùng working derectory:
+            
+            file2
+            file3
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+
+                    file1
+
+                        --------------------------------
+                        --------------------------------
+
+                        Vùng repository:
+
+                            Chưa có file nào
+
+       
+
+    e. Chạy lệnh: git commit -m”add file”
+
+        --------------------------------
+        --------------------------------
+
+        Vùng working derectory:
+            
+            file2
+            file3
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+
+                    Không có file nào
+
+                        --------------------------------
+                        --------------------------------
+
+                        Vùng repository:
+
+                            Commit "add file" (file1)
+
+      
+
+    f. Chạy lệnh: git add .
+
+
+        --------------------------------
+        --------------------------------
+
+        Vùng working derectory:
+            
+            Không có file nào
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+
+                    file2
+                    file3
+
+                        --------------------------------
+                        --------------------------------
+
+                        Vùng repository:
+
+                            Commit "add file" (file1)
+
+       
+
+    g. Chạy lệnh: git restore --staged file2
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            file2
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+                
+                    file3
+
+                        --------------------------------
+                        --------------------------------
+
+                        Vùng repository:
+
+                            Commit "add file" (file1)
+
+    h. Chạy lệnh: git commit -m"add all file"
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            file2
+
+                --------------------------------
+                --------------------------------
+
+                Vùng stating:
+                
+                    Không có file nào
+
+                        --------------------------------
+                        --------------------------------
+
+                        Vùng repository:
+
+                            Commit "add all file" (file3)
+
+                            Commit "add file" (file1)
+
+    f. Chạy lệnh: git reset HEAD ~1
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            file2
+            file3
+                --------------------------------
+                --------------------------------
+                Vùng stating:
+                
+                    Không có file nào
+                    --------------------------------
+                    --------------------------------
+                    Vùng repository:
+
+                        Commit "add file" (file1)
+
+
+
+    Bài 3. Hãy tưởng tượng có 1 folder lesson-3-git mới được tạo ra. Hãy liệt kê các file theo từng vùng sau khi 
+    thao tác các lệnh sau: 
+
+    a. Chạy lệnh git init 
+    b. Tạo file file1.txt, file2.txt, oops/file3.txt. 
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            file1.txt
+            file2.txt
+            file3.txt
+                --------------------------------
+                --------------------------------
+                Vùng stating:
+                
+                    Không có file nào
+                    --------------------------------
+                    --------------------------------
+                    Vùng repository:
+
+                        Không có file nào
+
+    c. Thêm file .gitignore, thêm vào 2 dòng: file1.txt, oops/ 
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            file2.txt
+
+                --------------------------------
+                --------------------------------
+                Vùng stating:
+                
+                    Không có file nào
+
+                    --------------------------------
+                    --------------------------------
+                    Vùng repository:
+
+                        Không có file nào
+    d. Chạy lệnh: git add . 
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            Không có file nào
+
+                --------------------------------
+                --------------------------------
+                Vùng stating:
+                
+                    file2.txt
+
+                    --------------------------------
+                    --------------------------------
+                    Vùng repository:
+
+                        Không có file nào
+
+    e. Chạy lệnh: git commit -m"init project" 
+
+        --------------------------------
+        --------------------------------
+        Vùng working derectory:
+            
+            Không có file nào
+
+                --------------------------------
+                --------------------------------
+                Vùng stating:
+                
+                    Không có file nào
+
+                    --------------------------------
+                    --------------------------------
+                    Vùng repository:
+
+                        commit "init project" (file2.txt)
+
+            
+
+
+
+
+
+
+
+
+            
+
+
+
